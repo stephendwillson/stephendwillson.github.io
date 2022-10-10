@@ -26,20 +26,27 @@ jobs:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
         
       - name: Setup Pages
         uses: actions/configure-pages@v2
         
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
+      - name: Build page with Jekyll
+        uses: actions/jekyll-build-pages@v1-beta
         with:
           source: ./
           destination: ./_site
+          future: false
           
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: github-pages
+          path: ./artifact.tar
+          if-no-files-found: warn
 
   deploy:
     needs: build
@@ -48,6 +55,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-    - name: 'Deploy to GitHub Pages'
-      id: deployment
-      uses: actions/deploy-pages@v1-beta
+      - name: 'Deploy to GitHub Pages'
+        id: deployment
+        uses: actions/deploy-pages@v1-beta
