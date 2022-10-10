@@ -13,6 +13,7 @@ on:
 permissions:
   contents: read
   pages: write
+  #deployments: write
   id-token: write
 
 # Allow one concurrent deployment
@@ -21,7 +22,7 @@ concurrency:
   cancel-in-progress: true
   
 jobs:
-  build-and-deploy:
+  build:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
@@ -40,5 +41,13 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 
-      - name: Deploy
-        uses: actions/deploy-pages@v1
+    deploy:
+      needs: build
+      runs-on: ubuntu-latest
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      steps:
+      - name: 'Deploy to GitHub Pages'
+        id: deployment
+        uses: actions/deploy-pages@v1-beta
