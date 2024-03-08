@@ -12,8 +12,44 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript>
+		<!-- Use this if javascript is disabled -->
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+	<script>
+		function updateTitle() {
+			var hash = window.location.hash.substr(1); // get hash fragment without #
+			var title = "Stephen D. Willson's Home";
+
+			// set title based on hash fragment
+			switch (hash) {
+				case "":
+					title = "Stephen D. Willson's Home";
+					break;
+				case "about":
+					title = "About";
+					break;
+				case "work":
+					title = "Work"
+					break;
+				case "lostwave":
+					title = "Lostwave"
+					break;
+				case "contact":
+					title = "Contact";
+					break;
+			}
+
+			document.title = title;
+		}
+
+		// Update title on hash change
+		window.addEventListener("hashchange", updateTitle);
+		// window.onhashchange(updateTitle);
+		// Update title when page loads or URL changes (including when returning to index.html#)
+		window.addEventListener("load", updateTitle);
+		window.addEventListener("click", updateTitle);
+		// window.addEventListener("popstate", updateTitle);
+	</script>
 </head>
 
 <body class="is-preload">
@@ -23,6 +59,7 @@
 
 		<!-- Header -->
 		<header id="header">
+
 			<div class="logo">
 				<span class="icon fa-gem"></span>
 			</div>
@@ -34,11 +71,11 @@
 			</div>
 			<nav>
 				<ul>
-					<li><a href="#intro">Intro</a></li>
-					<li><a href="#work">Work</a></li>
 					<li><a href="#about">About</a></li>
+					<li><a href="#work">Work</a></li>
+					<li><a href="#lostwave">Lostwave</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<!--<li><a href="#elements">Elements</a></li>-->
+					<!-- <li><a href="#elements">Elements</a></li> -->
 				</ul>
 			</nav>
 		</header>
@@ -46,27 +83,28 @@
 		<!-- Main -->
 		<div id="main">
 
-			<!-- Intro -->
-			<article id="intro">
-				<h2 class="major">Intro</h2>
-				<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-				<p>Welcome! My name is Stephen Willson. I'm a software engineer based in the Ann Arbor area of Michigan.
+			<!-- About -->
+			<article id="about">
+				<h2 class="major">About</h2>
+				<span class="image main"><img src="images/about.png" alt="" /></span>
+				<p>My name is Stephen Willson. I'm a software validation engineer from the Ann Arbor area of Michigan.
 				</p>
 			</article>
 
 			<!-- Work -->
 			<article id="work">
 				<h2 class="major">Work</h2>
-				<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
+				<span class="image main"><img src="images/work.png" title="Me not that kind of orc!" /></span>
 				<p>This section is currently under construction :(</p>
 			</article>
 
-			<!-- About -->
-			<article id="about">
-				<h2 class="major">About</h2>
-				<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-				<p>Hello World!</p>
-				<p></p>
+			<!-- Lostwave -->
+			<article id="lostwave">
+				<h2 class="major">Lostwave</h2>
+				<span class="image main"><img src="images/lostwave.jpg" alt="" /></span>
+				<p>This section is currently under construction :(</p>
+				<p>The intent of this section is to be a place to listen to various lostwave tracks.</p>
+				</p>
 			</article>
 
 			<!-- Contact -->
@@ -118,9 +156,11 @@
 					<h6>Heading Level 6</h6>
 					<hr />
 					<h4>Blockquote</h4>
-					<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus
+					<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget
+						tempus
 						euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis
-						iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem
+						iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus
+						lorem
 						ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
 					<h4>Preformatted</h4>
 					<pre><code>i = 0;
@@ -163,8 +203,10 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					<h4>Icons</h4>
 					<ul class="icons">
 						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a>
+						</li>
+						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a>
+						</li>
 						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
 					</ul>
 
@@ -353,7 +395,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		<!-- Footer -->
 		<footer id="footer">
 			<p class="copyright">&copy; Stephen Willson</p>
-			<p class="copyright">Design Template: <a href="https://html5up.net/dimension">HTML5 UP - Dimension</a>.</p>
+			<p class="copyright">Design Template: <a href="https://html5up.net/dimension">HTML5 UP - Dimension</a>.
+			</p>
 			<p class="copyright">Design modifications: Stephen Willson</p>
 		</footer>
 
